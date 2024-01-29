@@ -1,4 +1,12 @@
 package org.krishnas.tools.workouts.repository;
 
-public class UserRepository {
+import org.apache.catalina.User;
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import java.util.Collection;
+import java.util.List;
+
+public interface UserRepository extends MongoRepository<User, String> {
+
+    List<User> findByNameContaining(String name);
 }
