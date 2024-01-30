@@ -1,6 +1,6 @@
 package org.krishnas.tools.workouts.controller;
 
-import org.apache.catalina.User;
+import org.krishnas.tools.workouts.model.User;
 import org.krishnas.tools.workouts.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +29,7 @@ public class UserController {
         if (name == null)
             users.addAll(repository.findAll());
         else
-            users.addAll(repository.findByNameContaining(name));
+            users.addAll(repository.findByUserNameContaining(name));
 
         if (users.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
