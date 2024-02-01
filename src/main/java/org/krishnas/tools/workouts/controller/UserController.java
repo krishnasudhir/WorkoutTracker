@@ -26,8 +26,12 @@ public class UserController {
     public ResponseEntity<List<User>> getAllUsers(@RequestParam(required = false) String name) {
         logger.info("Fetch all Users");
         List<User> users = new ArrayList<>();
-        if (name == null)
+
+        if (name == null) {
+            List<User> userList = repository.findAll();
+            System.out.println("User list: \n" + userList);
             users.addAll(repository.findAll());
+        }
         else
             users.addAll(repository.findByUserNameContaining(name));
 
