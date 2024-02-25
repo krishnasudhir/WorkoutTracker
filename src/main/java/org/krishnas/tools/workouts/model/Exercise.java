@@ -6,7 +6,6 @@ import java.util.List;
 public class Exercise {
 
     private String exerciseCat;
-    private HashMap sets;
 
     List<ExerciseSet> exerciseSets;
 
@@ -16,14 +15,6 @@ public class Exercise {
 
     public void setExerciseCat(String exerciseCat) {
         this.exerciseCat = exerciseCat;
-    }
-
-    public HashMap getSets() {
-        return sets;
-    }
-
-    public void setSets(HashMap sets) {
-        this.sets = sets;
     }
 
     public List<ExerciseSet> getExerciseSets() {

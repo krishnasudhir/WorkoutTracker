@@ -7,7 +7,10 @@ import java.util.List;
 
 @Document(collection = "workout")
 public class Workout {
+
+
     @Id
+    private String id;
     private int userId;
     private String dateTime;
     private String category;
@@ -19,6 +22,14 @@ public class Workout {
         this.dateTime = dateTime;
         this.category = category;
         this.exercises = exercises;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public int getUserId() {

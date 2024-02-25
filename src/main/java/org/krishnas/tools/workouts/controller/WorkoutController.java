@@ -4,6 +4,7 @@ package org.krishnas.tools.workouts.controller;
 import org.krishnas.tools.workouts.model.User;
 import org.krishnas.tools.workouts.model.Workout;
 import org.krishnas.tools.workouts.repository.UserRepository;
+import org.krishnas.tools.workouts.repository.WorkoutRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,21 +23,13 @@ public class WorkoutController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
-    UserRepository repository;
+    WorkoutRepository repository;
 
-    @GetMapping("/users")
-    public ResponseEntity<List<Workout>> getAllWorkouts(@RequestParam(required = false) String workout) {
+    @GetMapping("/workouts")
+    public ResponseEntity<List<Workout>> getAllWorkouts() {
         logger.info("Fetch all Workouts");
         List<Workout> workouts = new ArrayList<>();
-
-        if (workout == null) {
-            List<User> workoutList = repository.findAll();
-            System.out.println("Workout list: \n" + workouts);
-            //workouts.addAll(repository.findAll());
-        }
-//        else
-//            workouts.addAll(repository.findByUserNameContaining(workout));
-
+        workouts.addAll(repository.findAll());
         if (workouts.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
