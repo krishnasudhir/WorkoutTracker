@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
@@ -35,4 +36,21 @@ public class WorkoutController {
 
         return new ResponseEntity<>(workouts, HttpStatus.OK);
     }
+
+    @PutMapping("/workouts/{id}")
+    public ResponseEntity<Workout> updateWork(@PathVariable("id") String id, @RequestBody Workout workout) {
+        Optional<Workout> workoutData = repository.findById(id);
+
+        if (workoutData.isPresent()) {
+            Workout workoutToUpdate = workoutData.get();
+            workoutToUpdate.update(workout);
+            return new ResponseEntity<>(repository.save(workoutToUpdate), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    //@DeleteMapping
+
+    //@PostMapping
 }

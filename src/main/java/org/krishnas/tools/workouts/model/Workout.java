@@ -65,4 +65,11 @@ public class Workout {
     }
 
     public Workout(){};
+
+    public void update(Workout workout) {
+        this.userId = workout.userId;
+        this.dateTime = workout.dateTime;
+        this.category = workout.category;
+        this.exercises = workout.exercises;
+    }
 }
