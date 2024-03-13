@@ -50,7 +50,34 @@ public class WorkoutController {
         }
     }
 
-    //@DeleteMapping
+    @DeleteMapping("/workouts/{id}")
+    public ResponseEntity<HttpStatus> deleteWorkout(@PathVariable("id") String id) {
+        try {
+            repository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
-    //@PostMapping
+    @DeleteMapping("/workouts")
+    public ResponseEntity<HttpStatus> deleteAllWorkouts() {
+        try {
+            repository.deleteAll();
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/workouts")
+    public ResponseEntity<Workout> createWorkout(@RequestBody Workout workout) {
+        try {
+            Workout newWorkout = repository.save(new Workout(workout));
+            return new ResponseEntity<>(newWorkout, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

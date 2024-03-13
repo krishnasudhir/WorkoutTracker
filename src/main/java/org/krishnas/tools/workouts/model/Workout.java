@@ -24,6 +24,13 @@ public class Workout {
         this.exercises = exercises;
     }
 
+    public Workout(Workout workout) {
+        this.userId = workout.userId;
+        this.dateTime = workout.dateTime;
+        this.category = workout.category;
+        this.exercises = workout.exercises;
+    }
+
     public String getId() {
         return id;
     }
